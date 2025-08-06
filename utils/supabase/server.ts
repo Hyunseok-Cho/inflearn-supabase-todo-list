@@ -5,7 +5,8 @@ import { cookies } from "next/headers";
 import { Database } from "types_db";
 
 export const createServerSupabaseClient = async (
-  cookieStore: ReturnType<typeof cookies> = cookies(),
+  cookieStore?: Awaited<ReturnType<typeof cookies>>, // optional로 변경
+  // cookieStore: ReturnType<typeof cookies> = cookies(),
   admin: boolean = false
 ) => {
   return createServerClient<Database>(
@@ -42,7 +43,7 @@ export const createServerSupabaseClient = async (
 };
 
 export const createServerSupabaseAdminClient = async (
-  cookieStore: ReturnType<typeof cookies> = cookies()
+  cookieStore?: Awaited<ReturnType<typeof cookies>>, // optional로 변경
 ) => {
   return createServerSupabaseClient(cookieStore, true);
 };
